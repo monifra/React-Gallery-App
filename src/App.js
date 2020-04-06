@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 //axios for fetching data
 import axios from 'axios';
 
@@ -7,6 +8,7 @@ import axios from 'axios';
 import SearchForm from "./components/SearchForm";
 import Nav from "./components/Nav";
 import PhotoContainer from "./components/PhotoContainer";
+import Error from "./components/Error";
 
 //flicker config
 import apiKey from "./config.js";
@@ -38,7 +40,7 @@ class App extends Component {
 
     //Search Function
 
-    search = (query = 'horse') => {
+    search = (query = 'horses') => {
         axios.get(` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
             .then(response => {
                 this.setState({
@@ -49,19 +51,29 @@ class App extends Component {
             .catch(error => {
                 console.log('Error fetching and parsing data', error);
             });
-    }
+    };
+
 
     render() {
         console.log(this.state.images);
         return (
             <div className="container">
-                <SearchForm onSearch={this.search}/>
-                <Nav/>
-                { (this.state.isLoading)
-                    ? <p>Loading......</p>
-                    : <PhotoContainer data={this.state.images}/>
-                }
-
+                <Router>
+                    <Switch>
+                        <Route exact path="/" render={ ()=> <Redirect to="/search/horses" /> } />
+                        <Route path="/search/:query" render={ ({match})=> (
+                            <>
+                                <SearchForm onSearch={this.search}/>
+                                <Nav/>
+                                { (this.state.isLoading)
+                                    ? <p>Loading......</p>
+                                    : <PhotoContainer data={this.state.images}/>
+                                }
+                            </>
+                        ) } />
+                        <Route path="*" component={Error} />
+                    </Switch>
+                </Router>
             </div>
         );
     }
