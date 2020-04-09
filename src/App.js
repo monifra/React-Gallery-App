@@ -22,17 +22,6 @@ class App extends Component {
         };
     }
 
-    // componentDidMount() { //is called immediately after a component is added to a DOM
-    //     axios.get(` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=Cat&per_page=24&format=json&nojsoncallback=1`)
-    //         .then(response => {
-    //             this.setState({
-    //                images: response.data.photos.photo
-    //             });
-    //         })
-    //         .catch(error => {
-    //             console.log('Error fetching and parsing data', error);
-    //         });
-    // }
 
     componentDidMount() {
         this.search();
@@ -45,7 +34,8 @@ class App extends Component {
             .then(response => {
                 this.setState({
                     images: response.data.photos.photo,
-                    isLoading: false
+                    isLoading: false,
+                    query: query
                 });
             })
             .catch(error => {
@@ -57,24 +47,31 @@ class App extends Component {
     render() {
         console.log(this.state.images);
         return (
+            <Router>
             <div className="container">
-                <Router>
+                <SearchForm
+                    onSearch={this.search}
+                />
+                <Nav navSearch={this.search}/>
+
                     <Switch>
                         <Route exact path="/" render={ ()=> <Redirect to="/search/horses" /> } />
-                        <Route path="/search/:query" render={ ({match})=> (
+                        <Route path="/search/:query" render={ ()=>(
                             <>
-                                <SearchForm onSearch={this.search}/>
-                                <Nav/>
                                 { (this.state.isLoading)
                                     ? <p>Loading......</p>
-                                    : <PhotoContainer data={this.state.images}/>
+                                    : <PhotoContainer
+                                        data={this.state.images}
+                                        queryData={this.state.query}
+                                      />
                                 }
                             </>
                         ) } />
                         <Route path="*" component={Error} />
                     </Switch>
-                </Router>
+
             </div>
+            </Router>
         );
     }
 }
