@@ -22,9 +22,6 @@ class App extends Component {
         };
     }
 
-
-
-
     //Search Function
 
     search = (query = 'horses') => {
@@ -46,32 +43,29 @@ class App extends Component {
         console.log(this.state.images);
         return (
             <Router>
-            <div className="container">
-                <SearchForm
-                    onSearch={this.search}
-                />
-                <Nav navSearch={this.search}/>
+                <div className="container">
+                    <SearchForm
+                        onSearch={this.search}
+                    />
+                    <Nav navSearch={this.search}/>
 
                     <Switch>
                         <Route exact path="/" render={ ()=> <Redirect to="/search/horses" /> } />
                         <Route path="/search/:query" render={ ({match})=>(
-                            <>
-                                {/*{ (this.state.isLoading)*/}
-                                {/*    ? <p>Loading......</p> :*/}
-                                    <PhotoContainer
-                                        routeMatch={match}
-                                        data={this.state.images}
-                                        queryData={this.state.query}
-                                        handleSearch={this.search}
-                                        loadingState={this.state.isLoading}
-                                      />
-                                {/*}*/}
-                            </>
+
+                            <PhotoContainer
+                                routeMatch={match}
+                                data={this.state.images}
+                                queryData={this.state.query}
+                                handleSearch={this.search}
+                                loadingState={this.state.isLoading}
+                            />
+
                         ) } />
                         <Route path="*" component={Error} />
                     </Switch>
 
-            </div>
+                </div>
             </Router>
         );
     }

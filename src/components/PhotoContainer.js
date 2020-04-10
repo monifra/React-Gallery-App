@@ -13,6 +13,13 @@ class PhotoContainer extends Component {
         this.props.handleSearch(this.props.routeMatch.params.query);
     }
 
+    componentDidUpdate(prevProps) {
+        console.log(prevProps);
+        if(this.props.routeMatch.params.query !== prevProps.routeMatch.params.query){
+            this.props.handleSearch(this.props.routeMatch.params.query);
+        }
+    }
+
     render() {
 
         const results = this.props.data;
