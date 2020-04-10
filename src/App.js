@@ -23,9 +23,7 @@ class App extends Component {
     }
 
 
-    componentDidMount() {
-        this.search();
-    }
+
 
     //Search Function
 
@@ -56,15 +54,18 @@ class App extends Component {
 
                     <Switch>
                         <Route exact path="/" render={ ()=> <Redirect to="/search/horses" /> } />
-                        <Route path="/search/:query" render={ ()=>(
+                        <Route path="/search/:query" render={ ({match})=>(
                             <>
-                                { (this.state.isLoading)
-                                    ? <p>Loading......</p>
-                                    : <PhotoContainer
+                                {/*{ (this.state.isLoading)*/}
+                                {/*    ? <p>Loading......</p> :*/}
+                                    <PhotoContainer
+                                        routeMatch={match}
                                         data={this.state.images}
                                         queryData={this.state.query}
+                                        handleSearch={this.search}
+                                        loadingState={this.state.isLoading}
                                       />
-                                }
+                                {/*}*/}
                             </>
                         ) } />
                         <Route path="*" component={Error} />
