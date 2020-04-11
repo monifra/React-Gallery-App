@@ -6,7 +6,7 @@ const Error = () => {
         <br/><br/>
         <h1>Oh noooo! Something went wrong!</h1>
         <p>It seems that the site you're requesting doesn't exist :(</p>
-        <p>You can search new value or for example choose dinosaur.</p>
+        <p>You can search new value or for example choose cow.</p>
     </div>
     )
 };
