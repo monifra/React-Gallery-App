@@ -38,7 +38,7 @@ class PhotoContainer extends Component {
 
         return(
             <div className="photo-container">
-                <h2>Results</h2>
+                <h2>Here are your results for {this.props.routeMatch.params.query}</h2>
                 <ul>
                     {images}
                 </ul>

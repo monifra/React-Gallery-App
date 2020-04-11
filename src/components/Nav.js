@@ -7,16 +7,16 @@ const Nav = (props) => (
     <nav className="main-nav">
         <ul>
             <li>
-                <NavLink to='/search/horses'>Horses</NavLink>
+                <NavLink to='/search/horse'>Horse</NavLink>
             </li>
             <li>
-                <NavLink to='/search/cats'>Cats</NavLink>
+                <NavLink to='/search/cat'>Cat</NavLink>
             </li>
             <li>
-                <NavLink to='/search/birds'>Birds</NavLink>
+                <NavLink to='/search/bird'>Bird</NavLink>
             </li>
             <li>
-                <NavLink to='/search/dinosaurs'>Dinosaurs</NavLink>
+                <NavLink to='/search/dinosaur'>Dinosaur</NavLink>
             </li>
         </ul>
     </nav>

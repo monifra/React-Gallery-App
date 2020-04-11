@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom
 import axios from 'axios';
 
 //import components
+import Header from "./components/Header";
 import SearchForm from "./components/SearchForm";
 import Nav from "./components/Nav";
 import PhotoContainer from "./components/PhotoContainer";
@@ -24,7 +25,7 @@ class App extends Component {
 
     //Search Function
 
-    search = (query = 'horses') => {
+    search = (query = 'horse') => {
         axios.get(` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
             .then(response => {
                 this.setState({
@@ -44,6 +45,7 @@ class App extends Component {
         return (
             <Router>
                 <div className="container">
+                    <Header/>
                     <SearchForm
                         onSearch={this.search}
                     />
