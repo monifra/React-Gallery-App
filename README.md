@@ -19,7 +19,6 @@ tags: Bird, Cat, Horse, Cow from which the user can choose or the user can reque
 1. In the project directory you should run:<br/><br/>
 `npm install`<br/><br/> This will download project dependencies which are listed in package.json.
 <br/>
-
 2. Next you need to get Flickr API key from [Flickr App Garden](https://www.flickr.com/services/apps/create/apply/) <br/>
 
 3. Now you need to create your own **config.js** file and place it inside of a **src** directory. Your code inside of the config.js file should look like this:
