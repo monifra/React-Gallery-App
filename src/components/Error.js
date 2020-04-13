@@ -1,5 +1,7 @@
+//import React
 import React from "react";
 
+//Error function for displaying error when 404
 const Error = () => {
     return (
     <div className="error">

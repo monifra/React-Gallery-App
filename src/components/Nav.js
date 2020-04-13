@@ -1,7 +1,9 @@
+//import React
 import React from "react";
+//import NavLink from react router
 import { NavLink } from 'react-router-dom';
 
-
+//Nav function create navigation for default results
 const Nav = (props) => (
 
     <nav className="main-nav">
@@ -22,5 +24,5 @@ const Nav = (props) => (
     </nav>
 
 );
-
+//export Nav Function
 export default Nav;

@@ -1,15 +1,18 @@
+//import React, withRouter from react router
 import React, {Component} from "react";
 import {withRouter} from 'react-router-dom';
+
+//Search class handling search input
 class SearchForm extends Component {
 
     state = {
         searchText: ''
     }
-
+    //change state when input has a value
     onSearchState = e => {
         this.setState({ searchText: e.target.value });
     }
-
+    //set query var, push new url, set new value for query, reset input value
     handleSubmit = e => {
        e.preventDefault();
        let query = this.query.value;
@@ -38,5 +41,5 @@ class SearchForm extends Component {
         );
     }
 }
-
+//export SearchForm class using withRouter
 export default withRouter(SearchForm);

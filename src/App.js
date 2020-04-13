@@ -1,9 +1,9 @@
+//import React
 import React, {Component} from 'react';
-
+//import React Router elements
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
-//axios for fetching data
+//import axios for fetching data
 import axios from 'axios';
-
 //import components
 import Header from "./components/Header";
 import SearchForm from "./components/SearchForm";
@@ -14,6 +14,7 @@ import Error from "./components/Error";
 //flicker config
 import apiKey from "./config.js";
 
+//app class handle page components
 class App extends Component {
     constructor() {
         super();
@@ -27,21 +28,21 @@ class App extends Component {
 
     search = (query = 'horse') => {
         axios.get(` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
-            .then(response => {
+            .then(response => { //when response setState
                 this.setState({
                     images: response.data.photos.photo,
                     isLoading: false,
                     query: query
                 });
             })
-            .catch(error => {
+            .catch(error => { //error while fetching data
                 console.log('Error fetching and parsing data', error);
             });
     };
 
-
+    //take care of rendering general look of the page, switch between routes
     render() {
-        console.log(this.state.images);
+        // console.log(this.state.images);
         return (
             <Router>
                 <div className="container">
@@ -51,7 +52,7 @@ class App extends Component {
                     />
                     <Nav navSearch={this.search}/>
 
-                    <Switch>
+                    <Switch> 
                         <Route exact path="/" render={ ()=> <Redirect to="/search/horses" /> } />
                         <Route path="/search/:query" render={ ({match})=>(
 
@@ -72,5 +73,5 @@ class App extends Component {
         );
     }
 }
-
+//export App class
 export default App;
