@@ -1,20 +1,20 @@
-##Just Gallery App
+## Just Gallery App
 App displays for a user 24 images fetched from [flickr API](https://www.flickr.com/).<br/> There are four default
 tags: Bird, Cat, Horse, Cow from which the user can choose or the user can request their own theme of images.      
 
-###How does it work
+### How does it work
 - The user can choose the default tags or write their own search tag in a search bar
 - Search will also work when the user change query parameter in a url
 - If the user tries to search non existing topics the app displays Not Found message
 - Page has three routes, main that redirects to Bird tag, dynamic search route that changes depending on query-parameter and 404 route that shows user friendly message when the user try to visit non existing route 
 - The page can be navigate by the use of back and forward browser navs
 
-###Styling 
+### Styling 
 - I've decided for a simple modern layout with images displayed in a squares
 - Main interactive elements are grouped at the top of the page: search bar, default images tags and a short friendly information about what tag is displaying now 
 - Page has some modern styling solution such as nice button hover transition   
 
-###Setup
+### Setup
 
 1. In the project directory you should run:<br/><br/>
 `npm install`<br/><br/> This will download project dependencies which are listed in package.json.
@@ -31,13 +31,13 @@ tags: Bird, Cat, Horse, Cow from which the user can choose or the user can reque
     `npm start`<br/><br/>
     and open in a browser http://localhost:3000. The page will automatically reload when you make changes.
     
-##Credits
+## Credits
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 It uses [React Router library]( https://reacttraining.com/react-router/) for setting routes, 
 [axios]((https://github.com/axios/axios)) for fetching data and starting 
 files from [Treehouse](https://teamtreehouse.com).   
 
-##Create React
+## Create React
 
 
 ### Available Scripts
