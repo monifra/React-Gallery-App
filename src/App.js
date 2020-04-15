@@ -10,9 +10,11 @@ import SearchForm from "./components/SearchForm";
 import Nav from "./components/Nav";
 import PhotoContainer from "./components/PhotoContainer";
 import Error from "./components/Error";
+import Loading from "./components/Loading";
 
 //flicker config
 import apiKey from "./config.js";
+
 
 //app class handle page components
 class App extends Component {
@@ -38,6 +40,7 @@ class App extends Component {
             .catch(error => { //error while fetching data
                 console.log('Error fetching and parsing data', error);
             });
+
     };
 
     //take care of rendering general look of the page, switch between routes
@@ -52,19 +55,17 @@ class App extends Component {
                     />
                     <Nav navSearch={this.search}/>
 
-                    <Switch> 
-                        <Route exact path="/" render={ ()=> <Redirect to="/search/horses" /> } />
-                        <Route path="/search/:query" render={ ({match})=>(
-
-                            <PhotoContainer
-                                routeMatch={match}
-                                data={this.state.images}
-                                queryData={this.state.query}
-                                handleSearch={this.search}
-                                loadingState={this.state.isLoading}
-                            />
-
-                        ) } />
+                    <Switch>
+                        <Route exact path="/" render={() => <Redirect to="/search/horses"/>} />
+                        <Route path="/search/:query" render={({match}) => (
+                        <PhotoContainer
+                            routeMatch={match}
+                            data={this.state.images}
+                            queryData={this.state.query}
+                            handleSearch={this.search}
+                            loadingState={this.state.isLoading}
+                        />
+                        )} />
                         <Route path="*" component={Error} />
                     </Switch>
 
