@@ -25,14 +25,19 @@ class PhotoContainer extends Component {
 
         const results = this.props.data;
         let images;
+
+        //if loading results show loading component
+        if(this.props.loadingState){
+            images = <Loading />
+        }
+
         // when there are results append theme to a PhotoContainer
         if(results.length > 0){
             images = results.map( img => <Photo url={`https://farm${img.farm}.staticflickr.com/${img.server}/${img.id}_${img.secret}.jpg`} key={img.id} />)
-        } //else if loading results show loading component
-        else if(this.props.loadingState){
-            images = <Loading />
-        } //else if there are no results show Not found component
-        else if(results.length === 0){
+        }
+
+        //if there are no results show Not found component
+        if(!this.props.loadingState && results.length === 0){
             images = <NotFound />
         }
 

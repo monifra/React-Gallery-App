@@ -10,8 +10,6 @@ import SearchForm from "./components/SearchForm";
 import Nav from "./components/Nav";
 import PhotoContainer from "./components/PhotoContainer";
 import Error from "./components/Error";
-import Loading from "./components/Loading";
-
 //flicker config
 import apiKey from "./config.js";
 
@@ -29,6 +27,7 @@ class App extends Component {
     //Search Function
 
     search = (query = 'horse') => {
+        this.setState({isLoading:true});
         axios.get(` https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
             .then(response => { //when response setState
                 this.setState({
@@ -40,7 +39,6 @@ class App extends Component {
             .catch(error => { //error while fetching data
                 console.log('Error fetching and parsing data', error);
             });
-
     };
 
     //take care of rendering general look of the page, switch between routes
